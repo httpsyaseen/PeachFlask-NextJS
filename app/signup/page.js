@@ -43,6 +43,7 @@ export default function Signup() {
 
       setError(null);
     }
+    console.log(error);
     notify(
       status,
       "User created successfully",

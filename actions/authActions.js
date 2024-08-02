@@ -1,6 +1,7 @@
 "use server";
 
 import { SignupFormSchema } from "@/lib/definition";
+import { createSession, encrypt } from "@/lib/session";
 import { dbHandler } from "@/lib/utils";
 import User from "@/model/User";
 import bcrypt from "bcrypt";
@@ -23,8 +24,7 @@ export async function signupUser(formData) {
       password: hashPassword,
     });
 
-    console.log(user);
-
     //3.Create token or session
+    await createSession(user._id);
   });
 }
