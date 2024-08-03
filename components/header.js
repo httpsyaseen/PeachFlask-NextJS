@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { useState } from "react";
 
-export default function Header() {
+export default function Header({ user }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -54,7 +54,7 @@ export default function Header() {
             <div className="flex space-x-2">
               <UserRound />
 
-              <Link href={"/login"}>Login</Link>
+              <Link href={"/login"}>{user?.name ? user.name : "Login"}</Link>
             </div>
           </div>
 

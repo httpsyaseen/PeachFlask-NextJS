@@ -33,7 +33,7 @@ const data = [
   },
 ];
 
-const Home = () => {
+export default async function Home() {
   return (
     <>
       <main>
@@ -286,6 +286,4 @@ const Home = () => {
       </main>
     </>
   );
-};
-
-export default Home;
+}

@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { decrypt } from "./lib/session";
 
 export async function middleware(req) {
+  console.log("middleware run");
+
   //1. Check if it is protected route
   const protectedRoutes = ["/protected"];
   const currentRoute = req.nextUrl.pathname;
@@ -25,12 +27,9 @@ export async function middleware(req) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * Match all request paths that start with:
+     * - /protected (and all its subroutes)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/protected/:path*",
   ],
 };
