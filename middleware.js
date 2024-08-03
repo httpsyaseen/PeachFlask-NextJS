@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { decrypt, verifySession } from "./lib/session";
+import { decrypt } from "./lib/session";
 
 export async function middleware(req) {
   //1. Check if it is protected route

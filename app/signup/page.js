@@ -16,7 +16,8 @@ export default function Signup() {
     address: "",
   });
 
-  const [error, setError] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function handleChange(event) {
     const { id, value } = event.target;
@@ -28,10 +29,15 @@ export default function Signup() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    const { status = null, error = null } = (await signupUser(formData)) || {};
+    setLoading(true);
+    const {
+      status = null,
+      error = null,
+      validation = null,
+    } = (await signupUser(formData)) || {};
 
-    error && setError(error);
+    validation && setError(validation);
+
     if (status === "success") {
       setFormData({
         name: "",
@@ -40,15 +46,15 @@ export default function Signup() {
         phoneNumber: "",
         address: "",
       });
-
       setError(null);
     }
-    console.log(error);
+
     notify(
       status,
       "User created successfully",
       error || "Something went wrong"
     );
+    setLoading(false);
   }
 
   return (
