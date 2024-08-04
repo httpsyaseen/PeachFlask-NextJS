@@ -1,15 +1,10 @@
 "use server";
 
 import { LoginFormSchema, SignupFormSchema } from "@/lib/definition";
-import { createSession, encrypt } from "@/lib/session";
+import { createSession, deleteSession, encrypt } from "@/lib/session";
 import { dbHandler } from "@/lib/utils";
 import User from "@/model/User";
 import bcrypt from "bcrypt";
-
-export async function copyMaker(hehe) {
-  const data = JSON.stringify(hehe);
-  return JSON.parse(data);
-}
 
 export async function signupUser(formData) {
   return dbHandler(async () => {
@@ -78,4 +73,8 @@ export async function loginUser(formData) {
       status: "success",
     };
   });
+}
+
+export async function signOut() {
+  deleteSession();
 }

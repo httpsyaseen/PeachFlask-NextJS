@@ -4,8 +4,7 @@ import Signup from "./Signup";
 
 export default async function LoginPage() {
   const user = await getUser();
-
-  if (user?._id) return redirect("/");
+  if (user?.id) return redirect("/");
 
   return <Signup />;
 }

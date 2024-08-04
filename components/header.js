@@ -3,6 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { signOut } from "@/actions/authActions";
 
 export default function Header({ user }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +34,7 @@ export default function Header({ user }) {
               { name: "Home", link: "/" },
               { name: "Products", link: "/products" },
               { name: "Services", link: "/services" },
-              { name: "About", link: "/about" },
+              { name: "About", link: "#about" },
             ].map((item, index) => {
               return (
                 <Link
@@ -51,11 +58,26 @@ export default function Header({ user }) {
               </span>
               <Link href={"/cart"}>Cart</Link>
             </div>
-            <div className="flex space-x-2">
-              <UserRound />
-
-              <Link href={"/login"}>{user?.name ? user.name : "Login"}</Link>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="focus:outline-none">
+                <div className="flex space-x-2">
+                  <UserRound />
+                  {user?.name ? user.email : "User"}
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {!user && (
+                  <Link href={"/login"}>
+                    <DropdownMenuItem>Login</DropdownMenuItem>
+                  </Link>
+                )}
+                {user && (
+                  <DropdownMenuItem>
+                    <button onClick={() => signOut()}>Signout</button>
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <div className="md:hidden ">

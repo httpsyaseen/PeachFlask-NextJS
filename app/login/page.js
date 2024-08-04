@@ -7,5 +7,7 @@ export default async function LoginPage() {
 
   if (user?.id) return redirect("/");
 
+  console.log(user);
+
   return <Login />;
 }

@@ -36,7 +36,7 @@ const data = [
 export default async function Home() {
   return (
     <>
-      <main>
+      <main className="scroll-smooth">
         {/* MAIN */}
         <section className="flex-1 relative ">
           <Image
@@ -207,7 +207,10 @@ export default async function Home() {
         </section>
 
         {/* FOLLOW  */}
-        <section className="w-full py-12 md:py-24 lg:py-32 border-y border-primary">
+        <section
+          id="about"
+          className="w-full py-12 md:py-24 lg:py-32 border-y border-primary "
+        >
           <div className="container mx-auto  px-4 md:px-6">
             <div className="grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2">
               <div className="space-y-4">
