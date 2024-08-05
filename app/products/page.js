@@ -1,12 +1,12 @@
 import { getAllProdcuts } from "@/actions/productActions";
 import ProductCard from "@/components/product-card";
-import { revalidate } from "next/cache";
 
 async function getProducts() {
   try {
-    const response = await fetch("http://localhost:3000/api", {
+    const response = await fetch("http://localhost:3000/api/products", {
       next: {
-        revalidate: 60 * 5,
+        // revalidate: 24 * 60 * 60,
+        revalidate: 1,
       },
     });
 
@@ -17,18 +17,14 @@ async function getProducts() {
     const { products } = await response.json();
 
     return products;
-
-    console.log(products);
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
   }
 }
 
-// export const revalidate = 60 * 5 * 1000;
-
 export default async function Page() {
-  // const data = await getProducts();
-  const { data, error = null } = await getAllProdcuts();
+  const data = await getProducts();
+  // const { data, error = null } = await getAllProdcuts();
 
   return (
     <main className="container mx-auto">

@@ -7,7 +7,6 @@ export default function ProductCard({ product }) {
   return (
     <ScrollAnimation animationClass="animate-zoomIn">
       <div className=" text-center text-primary md:shadow-xl max-w-[240px] md:rounded-md  ">
-        {/* <Link href={"/products/slug"}> */}
         <Image
           src={productImage}
           alt="hehe"
@@ -16,9 +15,11 @@ export default function ProductCard({ product }) {
           className="object-cover w-full h-48 md:rounded-t-md"
         />
         <div className="pb-4 pt-3 ">
-          <h2 className="text-center text-md md:text-xl font-bold mb-0 md:mb-2 ">
-            {product.name}
-          </h2>
+          <Link href={`/products/slug?data=${JSON.stringify(product)}`}>
+            <h2 className="text-center text-md md:text-xl font-bold mb-0 md:mb-2 ">
+              {product.name}
+            </h2>
+          </Link>
           <p className="text-center text-sm md:text-lg font-semibold mb-4">
             ${product.price}
           </p>
@@ -43,7 +44,6 @@ export default function ProductCard({ product }) {
             Add to cart
           </Link>
         </div>
-        {/* </Link> */}
       </div>
     </ScrollAnimation>
   );

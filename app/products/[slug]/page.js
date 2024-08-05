@@ -1,7 +1,8 @@
 import Image from "next/image";
 import ProductImage from "@/public/images/produc.jpg";
 
-export default function Page({ params }) {
+export default function Page({ params, searchParams }) {
+  const product = JSON.parse(searchParams.data);
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
       <div className="grid gap-4 md:gap-8">
@@ -57,7 +58,7 @@ export default function Page({ params }) {
       </div>
       <div className="grid gap-6 pt-6">
         <div className="grid gap-4">
-          <h1 className="font-bold text-3xl lg:text-4xl">Acme Prism T-Shirt</h1>
+          <h1 className="font-bold text-3xl lg:text-4xl">{product.name}</h1>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-0.5">
               <StarIcon className="w-5 h-5 fill-[#ff812e]" />
@@ -68,7 +69,7 @@ export default function Page({ params }) {
             </div>
             <span className="text-sm text-muted-foreground">(12 reviews)</span>
           </div>
-          <p className="text-2xl font-bold">$49.99</p>
+          <p className="text-2xl font-bold">${product.price}</p>
           <div className="grid gap-2">
             <label htmlFor="size" className="text-base font-semibold">
               Size
@@ -152,11 +153,12 @@ export default function Page({ params }) {
           <div>
             <h2 className="text-2xl font-bold">Product Description</h2>
             <p className="text-muted-foreground">
-              The Acme Prism T-Shirt is a stylish and comfortable addition to
+              {product.description}
+              {/* {  The Acme Prism T-Shirt is a stylish and comfortable addition to
               your wardrobe. Crafted with a blend of 60% combed ringspun cotton
               and 40% polyester, this tee offers a soft and breathable feel. The
               unique prism-inspired design adds a modern touch, making it a
-              versatile choice for casual or semi-formal occasions.
+              versatile choice for casual or semi-formal occasions.} */}
             </p>
           </div>
         </div>
